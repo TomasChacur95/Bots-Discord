@@ -22,4 +22,4 @@ async def agente (ctx, arg1):
         pido_agente = await ctx.reply("Aquí tienes algunos lineups y trucos con "+ arg1.capitalize() + ("  https://blitz.gg/valorant/guides?agent=" + arg1.lower() + "&difficulty=all&map=all&side=both&ability=all"))
         
    
-bot.run('OTEyNDE5NDM0Mjk4MjMyODgz.YZvq0Q.2b1kzQENk07hjs_-f0KkMeGIY_I')
+bot.run('Token')
