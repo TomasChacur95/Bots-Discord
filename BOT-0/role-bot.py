@@ -30,7 +30,7 @@ async def roles(ctx):
     
 
 
-bot.run("OTE1MzcwNjc4ODE4MDUwMTE5.YaanYA.Swt-8pvRnH9yxF9DYQ5MDGJ66Sg")
+bot.run("Your Code")
     
     
 
