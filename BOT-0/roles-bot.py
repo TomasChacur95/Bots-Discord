@@ -15,7 +15,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     login = 1
 
-# Payload is a dictionary
+# Adding roles when react.
 @bot.event
 async def on_raw_reaction_add(payload):
     ChID = 922532325642866739
@@ -34,13 +34,16 @@ async def on_raw_reaction_add(payload):
         elif emoji == '🔫':
             role = discord.utils.get(guild.roles, name = 'Cs:Go')
         await member.add_roles(role)
-        
 
+
+# Removing roles when unreact. 
+@bot.event
 async def on_raw_reaction_remove(payload):
     ChID = 922532325642866739
-
+    print("Removed rol to member.")
     if ChID == payload.channel_id:
-        guild = await(bot.fetch_guild(payload.guild_id))
+        guild  = await(bot.fetch_guild(payload.guild_id))
+        member = await(guild.fetch_member(payload.user_id))
         emoji = payload.emoji.name
 
         if emoji == '🦸‍♀️':
@@ -51,13 +54,9 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name = 'League of Legends')
         elif emoji == '🔫':
             role = discord.utils.get(guild.roles, name = 'Cs:Go')
-       
-        member = await(guild.fetch_member(payload.user_id))
+        await member.remove_roles(role)
         
-        if member is not None:
-            await member.remove_roles(role)
-        
-
+# Message
 @bot.command(pass_context = True)
 async def setupRoles(ctx):
     embed   = discord.Embed(
