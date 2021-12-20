@@ -10,6 +10,7 @@ login = 0
 
 IDMensaje = 0
 
+# Login
 @bot.event
 async def on_ready():
     global login
@@ -22,10 +23,9 @@ async def on_ready():
 async def on_raw_reaction_add(ctx): 
     global IDMensaje
     if(IDMensaje == 0):
-        print("No configuraste el BOT todavia...")
+        print("Bot is not configured yet")
         return 0
     emoji                = ctx.emoji
-    
     if(ctx.message_id == IDMensaje and emoji == ":eye:"):
         print("Reaccion")
 
@@ -46,21 +46,40 @@ async def on_raw_reaction_add(ctx):
             nombre_rol = alias_emojis[lista_emojis.find(emoji)]
             role = discord.utils.get(guild.roles, name = nombre_rol)
             await member.add_roles(role)
+@bot.event
+async def on_raw_reaction_add(payload: discord.RawReactionActionEvent):
+    ChID = 921480476886204487
+    if payload.channel_id != ChID:
+        return
+    if str(payload.emoji) == '🦸‍♀️':
+        valorant = discord.utils.get(payload.member.guild.roles, name="Valorant")
+        await payload.member.add_roles(valorant)
+    if str(payload.emoji) == '⚔':
+        wow = discord.utils.get(payload.member.guild.roles, name="World of Warcraft")
+        await payload.member.add_roles(wow)
+    if str(payload.emoji) == '🧙‍♀️':
+        league = discord.utils.get(payload.member.guild.roles, name="League of Legends")
+        await payload.member.add_roles(league)
+    if str(payload.emoji) == '🔫':
+        csgo = discord.utils.get(payload.member.guild.roles, name="Cs:Go")
+        await payload.member.add_roles(csgo)
+
+
 
 
 @bot.command()
 async def setupRoles(ctx):
     global IDMensaje
+    
     reaction   = await ctx.reply("Select your Game" + '\n' + '\n' + "- Valorant 🦸‍♀️" '\n' + "- World of Warcraft ⚔" + '\n' + "- League of Legends 🧙‍♀️" + '\n' + "- Cs:Go 🔫")
-    IDMensaje  = reaction.message_id
-
     await reaction.add_reaction('🦸‍♀️')
     await reaction.add_reaction('⚔')
     await reaction.add_reaction('🧙‍♀️')
     await reaction.add_reaction('🔫')
+    IDMensaje  = reaction.message_id
 
-    
-bot.run("Your Code")
+
+bot.run("")
     
     
 
