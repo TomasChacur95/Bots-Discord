@@ -70,6 +70,6 @@ async def setupRoles(ctx):
     await msg.add_reaction('🔫')
 
 
-bot.run("")
+bot.run("OTIwMzIxNTUzMTQzNTcwNDUy.YbiqPQ.wnN4lfjlxA-wef4h-fgoGX4IzJc")
 
 

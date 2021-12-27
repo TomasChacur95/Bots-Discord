@@ -26,7 +26,7 @@ async def comandos(ctx):
     lista_comandos = await ctx.reply("Para seleccionar tu agente escribe '!agente ' + su nombre.\nPara buscar estadísticas de jugadores escribe 'player' + nombre y servidor")
 
 
-bot.run('Token')
+bot.run('OTIyNjAyMjAwMDQ2Mzg3MzEy.YcD2QQ.TbgLMvKzbVngkOzaNW1m2Wedk7U')
 
 
     
