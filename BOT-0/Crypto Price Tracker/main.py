@@ -1,8 +1,9 @@
 import discord 
 import json
 import aiohttp
-from discord import activity
-import blockchain   as blc
+import random
+from discord        import activity
+from discord.ext    import tasks, commands
 import secrets      as scrt
 from discord.utils  import get
 from aiohttp.client import request
@@ -30,7 +31,7 @@ async def on_ready():
     global login
     print('We have logged in as {0.user}'.format(bot))
     login = 1
-
+    my_background_task.start()
 
 # Coin Price Command
 @bot.command()
@@ -40,21 +41,32 @@ async def coin(ctx, arg1):
         async with aiohttp.ClientSession() as cs:
             async with cs.get('https://api.pancakeswap.info/api/v2/tokens/' + tokens_dict[arg1]) as r:
                 res = await r.json()  # returns dict
-                await ctx.reply(res)
+                await ctx.reply(res['data']['price'])
     else:
-        await ctx.reply("The token " + str(arg1) +  " is not in the token list, if you want to add " + str(arg1) + " to the list please use the command : " + '\n' + "!add_token")
+        await ctx.reply("The token " + str(arg1) +  " is not in the token list, if you want to add " + str(arg1) + " to the list please use the command : " + '\n' + "!add_token and insert key and value with an space on each")
         
 
 
 @bot.command()
 async def add_token(ctx, key, value):
     global tokens_dict
+
     if(key in tokens_dict.keys()):
-        pass
+        await ctx.reply('I already have this token on my list, please add another Contract or another Value')
     else:
         tokens_dict[key] = value
 
 
+
+@tasks.loop(seconds=120.0)
+async def my_background_task():
+    """Will loop every 60 seconds and change the bots presence"""
+    await bot.change_presence(activity=discord.Game(name='XLS : '))
+    await bot.change_presence(activity=discord.Game(name='BNB : '))
+
+
+
+    
 
 bot.run(scrt.bot_token)
 
