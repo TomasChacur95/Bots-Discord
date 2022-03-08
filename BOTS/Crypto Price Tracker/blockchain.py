@@ -17,7 +17,6 @@ async def blockchain_connection(ctx, arg1):
     async with aiohttp.ClientSession() as cs:
         async with cs.get('https://api.pancakeswap.info/api/v2/tokens/' + tokens_dict[arg1]) as r:
             res = await r.json()  # returns dict
-            await ctx.reply(print(res['data']['price']))
+            await ctx.reply(res['data']['price'])
 
-            if r not in 'https://api.pancakeswap.info/api/v2/tokens/':
-                ctx.reply("That token is not admited on this bot, please try with another one.")
+    

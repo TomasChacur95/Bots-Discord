@@ -11,11 +11,9 @@ from discord.ext    import commands
 from discord.ext.commands.core import check, command
 
 
-
 # Bot
 bot   = commands.Bot(command_prefix = "!")
 login = 0
-
 
 
 
@@ -36,6 +34,7 @@ async def my_background_task():
     await bot.change_presence(activity=discord.Game(name='Lost Ark'))
 
 
+
 # Import Tokens Dict from blockchain.py
 blq.tokens_dict
 
@@ -50,6 +49,7 @@ async def coin(ctx, arg1):
         await ctx.reply("The token " + str(arg1) +  " is not in the token list, if you want to add " + str(arg1) + " to the list please use the command : " + '\n' + "!addtoken and insert key and value with an space on each")
         
 
+
 # Add the token that you want
 @bot.command()
 async def add_token(ctx, key, value):
@@ -62,8 +62,6 @@ async def add_token(ctx, key, value):
  
 
 
-        
 
- 
 bot.run(scrt.bot_token)
 
