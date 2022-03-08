@@ -1,7 +1,0 @@
-# Mague
-
-
-# Assasin
-
-
-# Warrior
